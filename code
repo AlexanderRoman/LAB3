@@ -1,0 +1,47 @@
+public class Lab3 {
+    public static void main(String[] args) {
+            try {
+                char choice = 'a';
+                int counter = 0;
+                String text = "Enim vide graeci sea te, eos fabellas lucilius eu? Pri cu doctus prodesset. Vitae oratio vocibus eu mea, mel ne doming labitur oportere. Eu quas consequat has, dolorum nostrum electram cum ea. Mutat essent usu ad, rebum nonumy oblique vim eu, aliquam adipiscing in sea. Ex quo omittam ancillae lucilius.";
+                text = text.toLowerCase();
+                String[] full = text.split(", |\\. |\\? |! |\\.|\\?|!| ");
+                int[] numberOfChar = new int[full.length];
+
+                //Getting a number of char in each word and putting it into list
+                for (int i = 0; i < full.length; i++) {
+                    for (int j = 0; j < full[i].toCharArray().length; j++) {
+                        if (full[i].toCharArray()[j] == choice) {
+                            counter++;
+                        }
+                    }
+                    numberOfChar[i] = counter;
+                    counter = 0;
+                }
+
+                //Insertion sorting both lists simultaneously
+                int n = numberOfChar.length;
+                for (int i = 1; i < n; ++i) {
+                    int key = numberOfChar[i];
+                    String key2 = full[i];
+                    int j = i - 1;
+
+                    while (j >= 0 && numberOfChar[j] > key) {
+                        numberOfChar[j + 1] = numberOfChar[j];
+                        full[j + 1] = full[j];
+                        j = j - 1;
+                    }
+                    numberOfChar[j + 1] = key;
+                    full[j + 1] = key2;
+                }
+
+                for (int i = 0; i < full.length; i++) {
+                    System.out.print(full[i]+" ");
+                    System.out.print(numberOfChar[i] + " ");
+                }
+
+            }catch(Exception E){
+                System.out.println("An error occurred");
+            }
+    }
+}
